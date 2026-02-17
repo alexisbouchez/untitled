@@ -59,7 +59,7 @@ export default function Page() {
               disabled={isPending}
             />
             <Button type="submit" disabled={isPending} className="shrink-0">
-              {isPending ? "Generating..." : "Get sample"}
+              {isPending ? "Generating..." : "Get a sample"}
             </Button>
           </div>
         </form>
