@@ -33,8 +33,7 @@ export default function Page() {
         </div>
 
         <p className="text-sm text-muted-foreground">
-          Pick a topic, drop your email. Get a crisp AI digest of what matters —
-          curated from the web, summarized, delivered.
+          Pick a topic, drop your email. Get a crisp AI digest of what matters: curated, summarized, delivered.
         </p>
 
         <form action={action} className="space-y-3">

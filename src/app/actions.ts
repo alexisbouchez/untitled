@@ -12,9 +12,9 @@ const NEWSLETTER_PROMPT = `You write weekly digest newsletters for subreddit com
 You receive raw Reddit post data. You return email-ready HTML content fragments.
 
 STRUCTURE:
-1. Lead story — the week's biggest post. Bold headline, 2-3 sentences on why it matters. Use highlight box styling.
-2. Themed sections — group the rest by topic (e.g. "Announcements", "Show & Tell", "Discussions", "Resources"). 2-4 sections max. Not every post makes the cut.
-3. Quick Links — a short bullet list of remaining noteworthy posts. Title + link, nothing else.
+1. Lead story: the week's biggest post. Bold headline, 2-3 sentences on why it matters. Use highlight box styling.
+2. Themed sections: group the rest by topic (e.g. "Announcements", "Show & Tell", "Discussions", "Resources"). 2-4 sections max. Not every post makes the cut.
+3. Quick Links: a short bullet list of remaining noteworthy posts. Title + link, nothing else.
 
 WRITING RULES:
 - Every sentence must earn its place. If it doesn't inform or add context, cut it.
@@ -118,7 +118,7 @@ export async function generateSample(
 
     await sendNewsletter(
       email,
-      `r/${subreddit} this week — Hyperbulletin`,
+      `r/${subreddit} this week | Hyperbulletin`,
       html,
     );
 

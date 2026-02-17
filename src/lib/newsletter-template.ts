@@ -26,7 +26,7 @@ export function wrapNewsletter(subreddit: string, content: string): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>r/${subreddit} digest — Hyperbulletin</title>
+<title>r/${subreddit} digest | Hyperbulletin</title>
 </head>
 <body style="margin:0;padding:0;background-color:${MUTED};font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:${FOREGROUND};">
 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:${MUTED};">
