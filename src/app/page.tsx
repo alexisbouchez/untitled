@@ -28,13 +28,13 @@ export default function Page() {
         <div className="space-y-3">
           <h1 className="text-4xl font-bold tracking-tight">Hyperbulletin</h1>
           <h2 className="text-lg text-muted-foreground">
-            Reddit, digested. Delivered.
+            AI-powered newsletters on any topic.
           </h2>
         </div>
 
         <p className="text-sm text-muted-foreground">
-          Pick a subreddit. Get a weekly newsletter with the best posts,
-          discussions, and links. No noise. No algorithm. Just the good stuff.
+          Pick a topic, drop your email. Get a crisp AI digest of what matters —
+          curated from the web, summarized, delivered.
         </p>
 
         <form action={action} className="space-y-3">
