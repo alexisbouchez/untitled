@@ -45,6 +45,7 @@ export default function Page() {
               type="text"
               name="subreddit"
               placeholder="r/subreddit"
+              defaultValue="r/"
               required
               disabled={isPending}
             />
