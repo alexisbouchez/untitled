@@ -45,17 +45,20 @@ function stripCodeFences(text: string): string {
 }
 
 async function generateWithOllama(subreddit: string): Promise<string> {
-  const posts = await fetchRedditPostsRaw(subreddit);
+  const allPosts = await fetchRedditPostsRaw(subreddit);
+  const posts = allPosts.slice(0, 7).map(({ title, url, permalink }) => ({ title, url, permalink }));
   const model = new ChatOllama({
     model: process.env.OLLAMA_MODEL!,
     baseUrl: process.env.OLLAMA_BASE_URL || "http://localhost:11434",
   });
 
+  const postsText = posts.map((p, i) => `${i + 1}. ${p.title}\n   ${p.url}`).join("\n");
+
   const response = await model.invoke([
     { role: "system", content: NEWSLETTER_PROMPT },
     {
       role: "user",
-      content: `Here are the top posts from r/${subreddit} this week:\n\n${JSON.stringify(posts, null, 2)}\n\nWrite the newsletter content now. Remember: HTML fragments only, inline styles only, no wrapper elements.`,
+      content: `Top posts from r/${subreddit} this week:\n\n${postsText}\n\nWrite the newsletter now. HTML fragments only, inline styles only, no wrapper elements.`,
     },
   ]);
 
