@@ -10,9 +10,47 @@ interface RedditPost {
   permalink: string;
 }
 
+function decodeEntities(str: string): string {
+  return str
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#32;/g, " ")
+    .replace(/&#x27;/g, "'")
+    .replace(/&#39;/g, "'");
+}
+
+function parseAtomFeed(xml: string): RedditPost[] {
+  return xml
+    .split("<entry>")
+    .slice(1)
+    .map((entry) => {
+      const title = decodeEntities(
+        entry.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? ""
+      );
+      const permalink =
+        entry.match(/<link href="([^"]+)"/)?.[1] ?? "";
+      const rawContent = decodeEntities(
+        entry.match(/<content type="html">([\s\S]*?)<\/content>/)?.[1] ?? ""
+      );
+      const url =
+        rawContent.match(/href="([^"]+)">\[link\]/)?.[1] ?? permalink;
+      const selftext = (
+        rawContent.match(/<div class="md">([\s\S]*?)<\/div>/)?.[1] ?? ""
+      )
+        .replace(/<[^>]+>/g, "")
+        .trim()
+        .slice(0, 300);
+
+      return { title, score: 0, url, selftext, num_comments: 0, permalink };
+    })
+    .filter((p) => p.title);
+}
+
 async function fetchPosts(subreddit: string): Promise<RedditPost[]> {
   const res = await fetch(
-    `https://www.reddit.com/r/${subreddit}/top.json?t=week&limit=15`,
+    `https://www.reddit.com/r/${subreddit}/top.rss?t=week&limit=15`,
     { headers: { "User-Agent": "Hyperbulletin/1.0" } },
   );
 
@@ -20,15 +58,7 @@ async function fetchPosts(subreddit: string): Promise<RedditPost[]> {
     throw new Error(`Failed to fetch r/${subreddit}: ${res.status} ${res.statusText}`);
   }
 
-  const data = await res.json();
-  return data.data.children.map((child: { data: RedditPost }) => ({
-    title: child.data.title,
-    score: child.data.score,
-    url: child.data.url,
-    selftext: child.data.selftext?.slice(0, 300) || "",
-    num_comments: child.data.num_comments,
-    permalink: `https://reddit.com${child.data.permalink}`,
-  }));
+  return parseAtomFeed(await res.text());
 }
 
 export async function fetchRedditPostsRaw(subreddit: string) {
