@@ -16,6 +16,21 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Hyperbulletin",
+  description: "AI-powered newsletters on any topic. Pick a topic, drop your email. Get a crisp AI digest of what matters — curated, summarized, delivered.",
+  metadataBase: new URL("https://www.hyperbulletin.com"),
+  openGraph: {
+    title: "Hyperbulletin",
+    description: "AI-powered newsletters on any topic. Pick a topic, drop your email. Get a crisp AI digest of what matters — curated, summarized, delivered.",
+    url: "https://www.hyperbulletin.com",
+    siteName: "Hyperbulletin",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+    title: "Hyperbulletin",
+    description: "AI-powered newsletters on any topic. Pick a topic, drop your email. Get a crisp AI digest of what matters — curated, summarized, delivered.",
+  },
 };
 
 export default function RootLayout({
