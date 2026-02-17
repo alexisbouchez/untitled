@@ -27,7 +27,7 @@ export default function Page() {
       <div className="w-full max-w-md space-y-8">
         <div className="space-y-3">
           <h1 className="text-4xl font-bold tracking-tight">Hyperbulletin</h1>
-          <h2 className="text-lg text-muted-foreground">
+          <h2 className="text-lg font-medium">
             AI-powered newsletters on any topic.
           </h2>
         </div>
