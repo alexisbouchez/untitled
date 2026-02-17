@@ -40,12 +40,12 @@ export default function Page() {
           <InputGroup>
             <InputGroupAddon>
               <RedditIcon className="size-4 grayscale opacity-50" />
+              <span className="text-muted-foreground text-sm">r/</span>
             </InputGroupAddon>
             <InputGroupInput
               type="text"
               name="subreddit"
-              placeholder="r/subreddit"
-              defaultValue="r/"
+              placeholder="subreddit"
               required
               disabled={isPending}
             />
