@@ -24,12 +24,9 @@ export default function Page() {
 
   return (
     <main className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-md space-y-8 text-center">
+      <div className="w-full max-w-md space-y-8">
         <div className="space-y-3">
-          <h1 className="text-4xl font-bold tracking-tight flex items-center justify-center gap-3">
-            <RedditIcon className="size-9 shrink-0" />
-            Hyperbulletin
-          </h1>
+          <h1 className="text-4xl font-bold tracking-tight">Hyperbulletin</h1>
           <h2 className="text-lg text-muted-foreground">
             Reddit, digested. Delivered.
           </h2>
@@ -43,7 +40,7 @@ export default function Page() {
         <form action={action} className="space-y-3">
           <InputGroup>
             <InputGroupAddon>
-              <RedditIcon className="size-4" />
+              <RedditIcon className="size-4 grayscale opacity-50" />
             </InputGroupAddon>
             <InputGroupInput
               type="text"
